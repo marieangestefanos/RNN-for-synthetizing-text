@@ -15,6 +15,8 @@ for k = 1:K
     ind_to_char(k) = book_chars(k);
 end
 
+rng(400);
+
 % Parameters of the network and the training
 m = 100; %hidd layer size
 eta = 0.1;
@@ -26,3 +28,14 @@ sig = 0.01;
 RNN.U = randn(m, K) * sig;
 RNN.W = randn(m, m) * sig;
 RNN.V = randn(K, m) * sig;
+
+h0 = ones(m, 1); 
+x0 = ones(K, 1);
+final_ind = VanillaRNN(h0, x0, seq_length, RNN);
+
+final_seq = [];
+for i = 1:seq_length
+    final_seq = strcat(final_seq, ind_to_char(final_ind(i)));
+end
+
+final_seq
