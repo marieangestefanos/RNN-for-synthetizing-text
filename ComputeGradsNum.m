@@ -6,7 +6,7 @@ for f = fieldnames(RNN)'
     num_grads.(f{1}) = ComputeGradNumSlow(X, Y, f{1}, RNN, h);
 end
 
-function grad = ComputeGradNum(X, Y, f, RNN, h)
+function grad = ComputeGradNumSlow(X, Y, f, RNN, h)
 
 n = numel(RNN.(f));
 grad = zeros(size(RNN.(f)));
